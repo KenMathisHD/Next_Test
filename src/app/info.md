@@ -10,3 +10,5 @@ Server components should really be any non-interactive component, meaning the us
 App routing supports nested routing by nesting folders inside eachother. So app>category>pickles would define as myapp.com/category/pickles
 
 Awesome section about [Component Hierarchy](https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy) - how components are used with eachother
+
+Only contents that are returned by page.js or route.js files are publically accessible/routable
