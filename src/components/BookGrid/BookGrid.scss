@@ -1,0 +1,114 @@
+.books_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 0.5rem;
+  container-type: inline-size;
+  --x-gap: 1rem;
+  --y-gap: 2rem;
+  gap: var(--y-gap) var(--x-gap);
+
+  .book_cont {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: start;
+    text-align: center;
+    // padding: 1rem 0.5rem;
+    text-decoration: none;
+
+    * {
+      width: 100%;
+    }
+
+    .book_img_cont {
+      box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2);
+      // box-shadow: 2px 0px 6px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .book_info_cont {
+      * {
+        color: #000;
+      }
+      h3 {
+        margin: 0 auto 0.25rem;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .book_img_cont {
+      overflow: hidden;
+      position: relative;
+      overflow: hidden;
+
+      &:after {
+        content: "";
+        display: block;
+        padding-top: 149.64%;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    @media (hover: none) {
+      .book_info_cont h3 {
+        text-decoration: underline;
+      }
+    }
+    @media (hover: hover) {
+      .book_img_cont {
+        transition: 0.1s linear;
+      }
+      &:hover {
+        .book_info_cont h3 {
+          text-decoration: underline;
+        }
+        .book_img_cont {
+          box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.4);
+          // box-shadow: 2px 0px 6px 4px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+  }
+
+  @container (min-width: 300px) {
+    .book_cont {
+      flex: 0 0 calc(50% - var(--x-gap));
+    }
+  }
+  @container (min-width: 400px) {
+    .book_cont {
+      flex: 0 0 calc(33.333333333334% - var(--x-gap));
+    }
+  }
+  @container (min-width: 576px) {
+    .book_cont {
+      flex: 0 0 calc(25% - var(--x-gap));
+    }
+  }
+  @container (min-width: 992px) {
+    .book_cont {
+      flex: 0 0 calc(20% - var(--x-gap));
+    }
+  }
+  @container (min-width: 1200px) {
+    .book_cont {
+      flex: 0 0 calc(16.666666666667% - var(--x-gap));
+    }
+  }
+}
