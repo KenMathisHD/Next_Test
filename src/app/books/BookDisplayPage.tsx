@@ -1,32 +1,40 @@
+"use client";
 // external
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 // components
-import { BookGrid } from "../../components/BookGrid/BookGrid";
-import { BookFilter } from "../../components/BookFilter/BookFilter";
+import { BookGrid, BookFilter } from "@/components";
 
 // assets and css
 import "./BookDisplayPage.scss";
 
 export const BookDisplayPage = () => {
-  const [booksArr, setBooksArr] = useState([0]);
+  const [booksArr, setBooksArr] = useState<Book[]>([
+    { image: "", title: "", caption: "string" },
+  ]);
+  const handleBooksUpdate = (arr: []) => {
+    setBooksArr([...arr]);
+  };
+  const fetchBooks = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/getBooks");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data: Book[] = await response.json();
+      console.log("Data:", data);
+      setBooksArr(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // You may want to add error handling here, e.g., display an error message on the page
+    }
+  };
 
   useEffect(() => {
     console.log("call");
-    axios
-      .get("/db/data.json")
-      .then((res) => {
-        console.log(res.data);
-        const { books } = res.data;
-        setBooksArr(books);
-      })
-      .catch((err) => console.log(err));
+    fetchBooks();
   }, []);
-
-  const handleBooksUpdate = (arr) => {
-    setBooksArr([...arr]);
-  };
 
   return (
     <div>

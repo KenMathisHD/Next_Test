@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 0 0.5rem;
+  max-width: 1024px;
   container-type: inline-size;
   --x-gap: 1rem;
   --y-gap: 2rem;
@@ -16,6 +17,17 @@
     text-align: center;
     // padding: 1rem 0.5rem;
     text-decoration: none;
+    animation-name: bookFadeIn;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    @for $row from 1 through 20 {
+      @for $col from 1 through 1 {
+        &:nth-child(#{$col+($row - 1) * 1}) {
+          animation: bookFadeIn 0.1s * ($col + ($row - 1) * 1) ease-in-out;
+        }
+      }
+    }
 
     * {
       width: 100%;
@@ -86,29 +98,66 @@
     }
   }
 
+  @keyframes bookFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   @container (min-width: 300px) {
     .book_cont {
       flex: 0 0 calc(50% - var(--x-gap));
+      @for $row from 1 through 10 {
+        @for $col from 1 through 2 {
+          &:nth-child(#{$col+($row - 1) * 2}) {
+            animation: bookFadeIn 0.1s * ($col + ($row - 1) * 2) ease-in-out;
+          }
+        }
+      }
     }
   }
   @container (min-width: 400px) {
     .book_cont {
       flex: 0 0 calc(33.333333333334% - var(--x-gap));
+      @for $row from 1 through 7 {
+        @for $col from 1 through 3 {
+          &:nth-child(#{$col+($row - 1) * 3}) {
+            animation: bookFadeIn 0.1s * ($col + ($row - 1) * 3) ease-in-out;
+          }
+        }
+      }
     }
   }
   @container (min-width: 576px) {
     .book_cont {
       flex: 0 0 calc(25% - var(--x-gap));
+      @for $row from 1 through 5 {
+        @for $col from 1 through 4 {
+          &:nth-child(#{$col+($row - 1) * 4}) {
+            animation: bookFadeIn 0.1s * ($col + ($row - 1) * 4) ease-in-out;
+          }
+        }
+      }
     }
   }
   @container (min-width: 992px) {
     .book_cont {
       flex: 0 0 calc(20% - var(--x-gap));
+      @for $row from 1 through 4 {
+        @for $col from 1 through 5 {
+          &:nth-child(#{$col+($row - 1) * 5}) {
+            animation: bookFadeIn 0.1s * ($col + ($row - 1) * 5) ease-in-out;
+          }
+        }
+      }
     }
   }
-  @container (min-width: 1200px) {
-    .book_cont {
-      flex: 0 0 calc(16.666666666667% - var(--x-gap));
-    }
-  }
+  // @container (min-width: 1200px) {
+  //   .book_cont {
+  //     flex: 0 0 calc(16.666666666667% - var(--x-gap));
+  //   }
+  // }
 }
